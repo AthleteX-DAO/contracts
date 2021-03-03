@@ -103,4 +103,36 @@ contract Goverance {
         }
     }
 
+    function vote (uint proposal) public {
+        Voter storage sender = voters[msg.sender];
+
+        require(sender.weight !=0, "Has no right to vote");
+        require(!sender.voted, "Already Voted");
+
+        sender.voted = true;
+        sender.vote = proposal;
+
+        proposals[proposal].voteCount += sender.weight;
+    }
+
+    // Compute the winning proposal
+    function winningProposal() public view
+        returns (uint winningProposal_)
+    {
+        // counter set
+        uint winningVoteCount = 0;
+        for (uint x =0; x < proposals.length; p++)
+        {
+            if (proposals[x].voteCount > winningVoteCount) 
+            {
+                winningVoteCount = proposals[x].voteCount;
+            }
+        }
+    }
+
+    function winnerName() public view
+        returns (bytes32 winnerName_)
+        {
+            winnerName_ = proposals[winningProposal()].name;
+        }
 }
