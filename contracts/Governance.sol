@@ -127,7 +127,6 @@ contract Goverance {
             if (proposals[x].voteCount > winningVoteCount) 
             {
                 winningVoteCount = proposals[x].voteCount;
-                winningProposal_ = proposals[x].name;
             }
         }
     }
