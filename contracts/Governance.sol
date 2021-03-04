@@ -1,4 +1,5 @@
-pragma solidity >=0.7.0 < 0.9.0;
+// SPDX-License-Identifier: MIT
+pragma solidity >=0.4.22 <0.9.0;
 
 /// @title Governance contract for Athlete Equity
 /// @author Kevin Kamto
@@ -95,7 +96,7 @@ contract Goverance {
         if (delegate_.voted) {
             // If the delegate already voted,
             // directly add to the number of votes
-            proposals[delegate_.vote].voteCount += sender.weight; // This is causing a break -- is it not a struct?
+            proposals[delegate_.votes].voteCount += sender.weight; // This is causing a break -- is it not a struct?
         } else {
             // If the delegate did not vote yet,
             // add to her weight.
@@ -110,22 +111,23 @@ contract Goverance {
         require(!sender.voted, "Already Voted");
 
         sender.voted = true;
-        sender.vote = proposal;
+        sender.votes = proposal;
 
         proposals[proposal].voteCount += sender.weight;
     }
 
-    // Compute the winning proposal
+    // Compute the winning proposal returns (uint winningProposal_)
     function winningProposal() public view
-        returns (uint winningProposal_)
+            returns (uint256 winningProposal_)
     {
         // counter set
         uint winningVoteCount = 0;
-        for (uint x =0; x < proposals.length; p++)
+        for (uint x =0; x < proposals.length; x++)
         {
             if (proposals[x].voteCount > winningVoteCount) 
             {
                 winningVoteCount = proposals[x].voteCount;
+                winningProposal_ = proposals[x].name;
             }
         }
     }

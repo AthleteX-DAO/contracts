@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "ethers": "^4.0.48",
     "solc": "^0.8.1"
   }
 }
