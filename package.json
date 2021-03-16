@@ -10,7 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "@openzeppelin/contracts": "^3.4.1",
-    "ethers": "^4.0.48",
+    "ethers": "^5.0.32",
     "solc": "^0.8.1"
   }
 }
