@@ -11,7 +11,7 @@ contract AthleteFactory is CloneFactory
         uint aPrice;
     }
 
-    Athletes[] public Athlete;
+    Athletes[] public arrAthlete;
     address masterContract;
 
     constructor (address memory _mC)
@@ -19,8 +19,8 @@ contract AthleteFactory is CloneFactory
         masterContract = _mC;
     }
 
-    function createAthlete(uint _price) external {
-
+    function createAthlete(string _name, uint _price) external {
+        arrAthlete.push(Athletes(_name, _price));
     }
 }
 
