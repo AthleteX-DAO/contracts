@@ -8,7 +8,7 @@ import "@openzeppelin/contracts/utils/Pausable.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
 import "@openzeppelin/contracts/token/ERC20.sol";
-
+// IMPORTANT - MAY NOT BE NECESSARY
 contract AEX is Ownable, Pausable, ERC20 {
     // private fields
     string public Symbol = "AEX";
