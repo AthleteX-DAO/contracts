@@ -5,7 +5,7 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import '@openzeppelin/contracts/token/ERC20/SafeERC20.sol';
 
 
-contract AEStaking is ERC20Permit {
+contract AEStaking is ERC20 {
     using SafeERC20 for IERC20;
     using SafeMath for uint256;
     IERC20 public xAE;
@@ -25,10 +25,10 @@ contract AEStaking is ERC20Permit {
         uint256 aeToLock = xAE.balanceOf(contractAddress);
         uint256 totalShares = totalSupply();
         
-        // Calculate and mint the amount of xPremia the Premia is worth. The ratio will change overtime, as xPremia is burned/minted and Premia deposited + gained from fees / withdrawn.
-        uint256 aeStake = _amount.mul(totalShares).div(totalPremia);
+        // Calculate and mint the amount of AE the AEstaked is worth. The ratio will change overtime, as xAE is burned/minted and AE deposited + gained from fees / withdrawn.
+        uint256 aeStake = _amount.mul(totalShares).div(aeToLock);
 
-        (aeToLock == 0 || totalSupply == 0) 
+        (aeToLock == 0 )   //Missing check if total shares are zero -- but that's a given
         ? _mint(msg.sender, _amount) 
         : _mint(msg.sender, aeStake);
         
