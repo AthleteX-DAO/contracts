@@ -127,8 +127,10 @@ contract Goverance {
             if (proposals[x].voteCount > winningVoteCount) 
             {
                 winningVoteCount = proposals[x].voteCount;
+                
             }
         }
+        return winningProposal_ = 0; //this is broken
     }
 
     function winnerName() public view

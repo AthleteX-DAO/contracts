@@ -1,8 +1,8 @@
 pragma solidity ^0.7.1;
-import './CloneFactory';
+import "./CloneFactory.sol";
 
 // Athletes are functionally the same, just differentiated by price / feed
-event newAthlete(uint aID, string name, uint aPrice );
+// event newAthlete(uint aID, string name, uint aPrice ); //This is broken -- didn't apply concepts correctly
 
 contract AthleteFactory is CloneFactory 
 {
@@ -14,12 +14,12 @@ contract AthleteFactory is CloneFactory
     Athletes[] public arrAthlete;
     address masterContract;
 
-    constructor (address memory _mC)
+    constructor (address _mC)
     {
         masterContract = _mC;
     }
 
-    function createAthlete(string _name, uint _price) external {
+    function createAthlete(string memory _name, uint _price) external {
         arrAthlete.push(Athletes(_name, _price));
     }
 }
