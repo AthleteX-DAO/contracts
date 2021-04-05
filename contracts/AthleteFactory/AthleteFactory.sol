@@ -14,7 +14,13 @@ contract AthleteFactory is CloneFactory
     Athletes[] public arrAthlete;
     address masterContract;
 
-    constructor (address _mC)
+    // memory - temporary -> use for pricing value
+    // storage - permanent -> transactions
+
+    mapping (uint => address) public athleteToOwner;
+    mapping (address => uint) ownerAthleteCount;
+
+    constructor (address memory _mC)
     {
         masterContract = _mC;
     }
@@ -22,13 +28,12 @@ contract AthleteFactory is CloneFactory
     function createAthlete(string memory _name, uint _price) external {
         arrAthlete.push(Athletes(_name, _price));
     }
-}
 
-contract Athlete {
-    uint public price;
-    function init(uint _price) external {
-        price = _price;
+    function getPrice() external
+    {
+        
     }
 
+}
     // Need to create oracle
 }
