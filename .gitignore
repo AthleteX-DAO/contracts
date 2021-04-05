@@ -7,3 +7,6 @@ yarn-error.log
 
 # Compiled Smart contracts
 build/
+
+# IMPORTANT - mnemonic for wallet
+.secret
