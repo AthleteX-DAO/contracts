@@ -2,7 +2,7 @@ pragma solidity ^0.7.4;
 
 import "../interfaces/IAthletePriceOracle";
 import "@openzeppelin/contracts/access/Ownable.sol";
-/// @title Caller Contract for the Athlete Equity Oracle
+/// @title Caller Contract for the aeUSD token on Athlete Equity
 /// @author kamto
 /// @notice Explain to an end user what this does
 /// @dev built using standard syntax from crypto zombies
@@ -12,6 +12,7 @@ contract CallerContract is Ownable {
     mapping(uint => bool) requests;
     event newOracleAddressEvent(address OracleAddress);
     event RecievedNeWRequestIdEvent(uint id);
+    event PriceUpdatedEvent(uint usdPrice, uint id);
     function setOracleInstanceAddress (address _oAddress) public onlyOwner
     {
         OracleAddress = _oAddress;
@@ -23,6 +24,20 @@ contract CallerContract is Ownable {
     {
         uint id = 
         requests[id] = true;
+        emit RecievedNeWRequestIdEvent(id);
+    }
+
+    function callback(uint _athPrice, uint _id) public
+    {
+        // Only call if has a valid ID
+        require(msg.sender == _id, "Only the contract owner can call this contract");
+        delete requests[_id];
+        emit PriceUpdatedEvent(_usdPrice, _id);
+    }
+    
+    modifier onlyOracle() {
+      require(msg.sender == oracleAddress, "You are not authorized to call this function.");
+      _;
     }
 }
 
