@@ -1,4 +1,4 @@
-pragma solidity ^0.7.1;
+pragma solidity >=0.6.0 <0.8.0;
 
 /*
 The MIT License (MIT)
