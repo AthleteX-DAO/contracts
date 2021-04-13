@@ -1,4 +1,4 @@
-pragma solidity ^0.7.1;
+pragma solidity >=0.6.0 <0.8.0;
 import "./CloneFactory.sol";
 
 // Athletes are functionally the same, just differentiated by price / feed
@@ -34,6 +34,4 @@ contract AthleteFactory is CloneFactory
         
     }
 
-}
-    // Need to create oracle
 }
