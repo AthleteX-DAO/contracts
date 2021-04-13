@@ -1,9 +1,5 @@
-// TODO create a decentralized Oracle populating athlete feed -- starting off as centralized
-
-
-
-pragma solidity ^0.8.3;
-import "@openzeppelin/contracts/access/Ownable.sol";
+pragma solidity >=0.6.0 <0.8.0;
+import "openzeppelin-solidity/contracts/ownership/Ownable.sol";
 import "../interfaces/ICallerContract.sol";
 contract EthPriceOracle is Ownable {
   uint private randNonce = 0;
@@ -11,9 +7,19 @@ contract EthPriceOracle is Ownable {
   mapping(uint256=>bool) pendingRequests;
   event GetLatestEthPriceEvent(address callerAddress, uint id);
   event SetLatestEthPriceEvent(uint256 ethPrice, address callerAddress);
-  
-  function getLatestAthPrice() public returns (uint) {
-      ++randNonce;
-      
+  function getLatestEthPrice() public returns (uint256) {
+    randNonce++;
+    uint id = uint(keccak256(abi.encodePacked(now, msg.sender, randNonce))) % modulus;
+    pendingRequests[id] = true;
+    emit GetLatestEthPriceEvent(msg.sender, id);
+    return id;
+  }
+  function setLatestEthPrice(uint256 _ethPrice, address _callerAddress, uint256 _id) public onlyOwner {
+    require(pendingRequests[_id], "This request is not in my pending list.");
+    delete pendingRequests[_id];
+    CallerContracInterface callerContractInstance;
+    callerContractInstance = CallerContracInterface(_callerAddress);
+    callerContractInstance.callback(_ethPrice, _id);
+    emit SetLatestEthPriceEvent(_ethPrice, _callerAddress);
   }
 }

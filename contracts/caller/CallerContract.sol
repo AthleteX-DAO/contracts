@@ -1,6 +1,6 @@
-pragma solidity ^0.7.4;
+pragma solidity >=0.6.0 <0.8.0;
 
-import "../interfaces/IAthletePriceOracle";
+import "../interfaces/IAthletePriceOracle.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 /// @title Caller Contract for the aeUSD token on Athlete Equity
 /// @author kamto
@@ -20,23 +20,22 @@ contract CallerContract is Ownable {
         emit newOracleAddressEvent(OracleAddress);
     }
 
-    function updateAthletePrice()
-    {
-        uint id = 
-        requests[id] = true;
-        emit RecievedNeWRequestIdEvent(id);
-    }
+  function updateEthPrice() public {
+    uint256 id = oracleInstance.getLatestEthPrice();
+    myRequests[id] = true;
+    emit ReceivedNewRequestIdEvent(id);
+  }
 
-    function callback(uint _athPrice, uint _id) public
-    {
-        // Only call if has a valid ID
-        require(msg.sender == _id, "Only the contract owner can call this contract");
-        delete requests[_id];
-        emit PriceUpdatedEvent(_usdPrice, _id);
-    }
+  function callback(uint256 _ethPrice, uint256 _id) public onlyOracle {
+    require(myRequests[_id], "This request is not in my pending list.");
+    ethPrice = _ethPrice;
+    delete myRequests[_id];
+    emit PriceUpdatedEvent(_ethPrice, _id);
+  }
     
+    // Only the oracle can call these functions ( as it should!)
     modifier onlyOracle() {
-      require(msg.sender == oracleAddress, "You are not authorized to call this function.");
+      require(msg.sender == OracleAddress, "You are not authorized to call this function.");
       _;
     }
 }
