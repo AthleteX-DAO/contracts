@@ -59,6 +59,32 @@ module.exports = {
       timeoutBlocks: 200,
       skipDryRun: true
     },
+    ropsten: {
+      provider: function() {
+        return new HDWalletProvider(mnemonic, "https://ropsten.infura.io/v3/81a0954561a94859a0c84f8be1d3afa6");
+      },
+      network_id: 3,
+      gasPrice: 20000000000, // 20 GWEI
+      gas: 3716887 // gas limit, set any number you want
+    },
+    rinkeby: {
+      provider: function() {
+        return new HDWalletProvider(mnemonic, "https://rinkeby.infura.io/v3/81a0954561a94859a0c84f8be1d3afa6");
+      },
+      network_id: 4
+    },
+    kovan: {
+      provider: function() {
+        return new HDWalletProvider(mnemonic, "https://kovan.infura.io/v3/81a0954561a94859a0c84f8be1d3afa6");
+      },
+      network_id: 42
+    },
+    main: {
+      provider: function() {
+        return new HDWalletProvider(mnemonic, "https://mainnet.infura.io/v3/81a0954561a94859a0c84f8be1d3afa6");
+      },
+      network_id: 1
+    }
   },
 
   // Set default mocha options here, use special reporters etc.

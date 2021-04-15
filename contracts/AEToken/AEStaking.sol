@@ -12,6 +12,8 @@ contract AEStaking is ERC20 {
     address public contractAddress;
     address public stakerAddress;
 
+    event NewStakingAddress(address newAddress);
+
     // Pass the athlete equity token upon init
     constructor(IERC20 _ae) ERC20("AEStaking", "xAE") {
         xAE = _ae;
@@ -19,16 +21,23 @@ contract AEStaking is ERC20 {
         stakerAddress = msg.sender;
     }
 
+    function setContractAddress(address newAddress)
+    {
+        contractAddress = newAddress;
+        emit NewStakingAddress(contractAddress);
+    }
+
     // Enter the staking contract
     /// @param _amount the amount of xAE to stake
     function enter(uint256 _amount) public {
-        uint256 aeToLock = xAE.balanceOf(contractAddress);
-        uint256 totalShares = totalSupply();
+        uint256 aeTotalStaked = xAE.balanceOf(contractAddress);
+        uint256 circulatingSupply = totalSupply();
         
         // Calculate and mint the amount of AE the AEstaked is worth. The ratio will change overtime, as xAE is burned/minted and AE deposited + gained from fees / withdrawn.
-        uint256 aeStake = _amount.mul(totalShares).div(aeToLock);
+        uint256 aeStake = _amount.mul(circulatingSupply).div(aeTotalStaked);
+        // myaeStake = ((Amount I Put In) * 100m ) / (total staked amount in contract)
 
-        (aeToLock == 0 )   //Missing check if total shares are zero -- but that's a given
+        (aeTotalStaked == 0 )   //Missing check if total shares are zero -- but that's a given
         ? _mint(msg.sender, _amount) 
         : _mint(msg.sender, aeStake);
         
@@ -39,9 +48,9 @@ contract AEStaking is ERC20 {
     // Leave the staking contract & reclaim your xAE ( plus gains!)
     /// @param _myShares the amount of xAE to withdraw (burn)
     function leave(uint256 _myShares) public {
-        uint256 totalShares = totalSupply();
+        uint256 circulatingSupply = totalSupply();
 
-        uint stakerShares = _myShares.mul(xAE.balanceOf(contractAddress)).div(totalShares);
+        uint stakerShares = _myShares.mul(xAE.balanceOf(contractAddress)).div(circulatingSupply);
         _burn(stakerAddress, _myShares);
         xAE.safeTransfer(stakerAddress, stakerShares);
     }

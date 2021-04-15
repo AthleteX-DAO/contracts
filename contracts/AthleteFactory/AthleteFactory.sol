@@ -25,7 +25,7 @@ contract AthleteFactory is CloneFactory
         masterContract = _mC;
     }
 
-    function createAthlete(string memory _name, uint _price) external {
+    function _createAthlete(string memory _name, uint _price) external {
         arrAthlete.push(Athletes(_name, _price));
     }
 
