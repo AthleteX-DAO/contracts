@@ -26,7 +26,9 @@ contract FeePool {
     /// @dev transfers coins to owner
     function retract(uint256 _amount) external {
 
-        //update owners account (call AEStaking.leave()) ?
+        require(ownersStake[msg.sender] >= _amount, 'Withdraw is too high');
+
+        //// ? update owners account (call AEStaking.leave()) ?
 
         // Update the owners stake with the new amount
         ownersStake[msg.sender] = ownersStake[msg.sender].add(_amount);
