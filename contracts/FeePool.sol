@@ -1,91 +1,78 @@
 pragma solidity 0.7.4;
 
-// import ERC20(?)
-// import AEStaking(?)/AEToken
-import "./AEToken/AEToken.sol";
-
 contract FeePool {
-    using SafeMath for uint256;
 
-    // Current amount added to pool
-    uint256 private _pool = 0;
-    
-    // Current gains within pool
-    uint256 private _gains = 0;
+    // The Pool - The number of coins in it (not dollar value)
+    uint256 private _feePool;
 
-    // mapping of Token to its supply
-    mapping (AEToken => uint256) tokensTotalSupply;
-
-    // FUNCTIONS
-        // add token to pool
-        // remove token from pool
-        // add/update gains
-        // take gains
+    // Owners Stake in the Pool
+    mapping (address => uint256) ownersStake;
 
 
-    /// @dev adding OR updating an AEToken to the pool, increase pool
-    /// @param the AEToken to be added
-    function updateToken(AEToken _aeToken) external {
-        uint256 tokensSupply = _aeToken.totalSupply();
+    /// @dev invest into the pool, updating each owners stake and the pool
+    /// @param amount owner invests into the pool
+    function invest(uint256 _amount) external {
 
-        // should be 0 on adding a token
-        uint256 preSupply = tokensTotalSupply[_aeToken];
+        //get coins from owner (call AEStaking.enter())?
 
-        tokensTotalSupply[_aeToken] = tokensSupply;
-        // pool = newSupply - oldSupply
-        _pool = _pool.add(tokensSupply.sub(preSupply));
-    }
-
-
-    /// @dev removing an AEToken to the pool, decreasing pool
-    /// @param the AEToken to be removed
-    function removeToken(AEToken _aeToken) external {
-        // require the token to exist (in the pool)
-        // could be an issue if a token has 0 supply
-        require (tokensTotalSupply[_aeToken] != 0);
+        // Update the owners stake with the new amount
+        ownersStake[msg.sender] = ownersStake[msg.sender].add(_amount);
         
-        //decuct from the total pool and set to 0
-        _pool.sub(tokensTotalSupply[_aeToken]);
-        tokensTotalSupply[_aeToken] = 0;
+        // Update the fee pool
+        _feePool = _feePool.add(_amount);
     }
 
 
-    // not sure about gains
-    function updateGains(uint256 _update) external {
-        _gains = _gains.add(_update);
+    /// @dev transfers coins to owner
+    function retract(uint256 _amount) external {
+
+        //update owners account (call AEStaking.leave()) ?
+
+        // Update the owners stake with the new amount
+        ownersStake[msg.sender] = ownersStake[msg.sender].add(_amount);
+
+        //Update the fee pool
+        _feePool = _feePool.sub(_amount);
     }
 
 
-    /// @dev returns current amount in the overall gains
-    /// @return _gains (total gains)
-    function getGains() view external returns (uint){
-        return _gains;
+    /// @dev get the amount in feePool
+    function getPool() external returns(uint256) {
+        //is this a VIEW function?
+        return _feePool;
     }
 
 
-    /// @dev owner can take the gains that they have made
-    /// @param _owner taking the gains, token they are using
-    /// @return the amount of gains taken
-    function takeGains(address _owner, AEToken _aeToken)  external returns (uint256){
-        // get balance of owner
-            // get balance of token                             (not needed)
-        // % of token owner has * % token compared to _pool
-            // (ownerBalance/tokenSupply) * (tokenSupply/pool)
-            // ownerBalance/Pool
-        // reduce and return % of gains
+
+    //// My own notes :)
+    
+    // Create our own coin
+    // People invest into it
+    // Tie fees into a pool
+
+    // People buy coins and that goes into a pool
+    // We set the initial value
+        // Where is it set and where can the growth be seen
+
+    // FeePool is the area where we have all the pooled in values
+
+    /*
+        FeePool acesses ERC20 totalSupply and figure out how much to leave with
+
+        More people, worth more
+
+        Tie together coin and athletes:
+            Athlete's value is based off in game preformance
+
+        Flywheel Pattern,
+            2 types of coin: ERC20 business value (AE coin), 
 
 
-        // QUESTION?
-        //  How to deal with fractions?
-        //  Update owner's balance?
-        // should msg.sender be used instead of _owner? (require that msg.sender is _owner)
+        FeePool is not dealing with changing price, rather just acessing current price and totalBalance 
 
-        require(msg.sender == _owner);
+        Make feePool for AE coin
+    */
 
-        uint256 ownerBalance = _aeToken.balanceOf(_owner);
-            //should this be a uint
-        uint256 gainsTaken = ownerBalance.mul(_gains).div(_pool);
-        _gains = _gains.sub(gainsTaken);
-        return gainsTaken;
-    }
+    // Access to the totalSupply
+    // Enter FeePool / Leave FeePool
 }
