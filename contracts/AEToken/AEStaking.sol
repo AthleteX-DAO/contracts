@@ -3,7 +3,7 @@ pragma solidity >=0.6.0 <0.8.0;
 
 import 'synthetix/contracts/interfaces/IStakingRewards.sol';
 
-contract AEStaking is ERC20 {
+contract AEStaking {
     address public contractAddress;
     address public stakerAddress;
     uint256 private stakedAmount;
