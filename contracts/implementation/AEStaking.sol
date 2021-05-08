@@ -1,5 +1,10 @@
 // SPDX-License-Identifier: MIT
-pragma solidity >=0.6.0 >0.8.0;
+pragma solidity >=0.6.0 <0.8.0;
+
+
+import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/math/Math.sol";
+import "@openzeppelin/contracts/math/SafeMath.sol";
 
 // Inheritance
 import "synthetix/contracts/interfaces/IStakingRewards.sol";
@@ -19,39 +24,121 @@ contract AEStaking is IStakingRewards {
     mapping(address => uint256) private _balances;
     mapping(address => uint256) public rewards;
     mapping(address => uint256) public userRewardPerTokenPaid;
+    address[] internal stakeholders;
+    mapping(address => uint256) internal stakes;
 
-    function totalSupply() external view returns (uint256) {
-        return _totalSupply;
+
+
+    /* ========== Stakeholders ========== */
+
+   function isStakeholder(address _address)
+       public
+       view
+       returns(bool, uint256)
+   {
+       for (uint256 s = 0; s < stakeholders.length; s += 1){
+           if (_address == stakeholders[s]) return (true, s);
+       }
+       return (false, 0);
+   }
+
+    /**
+    * @notice a method to add stakeholders
+    * @param _stakeholder a new stakeholder
+     */
+    function addStakeholder(address _stakeholder) public
+    {
+        (bool _isStakeholder, uint256 s) = isStakeholder(_stakeholder);
+        if (!_isStakeholder) stakeholders.push(_stakeholder);
     }
 
-    function stake(amount) external {
-        require(amount > 0, "Cannot stake nothing");
-        _totalSupply = _totalSupply.add(amount);
 
-        emit Staked(msg.sender, amount);
-    }
+    /**
+    * @notice A method to remove a stakeholder.
+    * @param _stakeholder The stakeholder to remove.
+    */
+   function removeStakeholder(address _stakeholder) public
+   {
+       (bool _isStakeholder, uint256 s) = isStakeholder(_stakeholder);
+       if(_isStakeholder){
+           stakeholders[s] = stakeholders[stakeholders.length - 1];
+           stakeholders.pop();
+       }
+   }
 
-    function withdraw(uint256 amount) public {
-        require(amount > 0);
-        // withdraw amount
-        _totalSupply = _totalSupply.sub(amount);
-    }
 
-    //Daily Staking Rewards
-    function getReward() external {
-        uint256 reward = rewards[msg.sender];
-        if (reward > 0) {
-            rewards[msg.sender] = 0;
-            rewardsToken.safeTransfer(msg.sender, reward);
-            emit RewardPaid(msg.sender, reward);
-        }
-    }
+      /**
+    * @notice A method to retrieve the stake for a stakeholder.
+    * @param _stakeholder The stakeholder to retrieve the stake for.
+    * @return uint256 The amount of wei staked.
+    */
+   function stakeOf(address _stakeholder) public view
+       returns(uint256)
+   {
+       return stakes[_stakeholder];
+   }
 
-    function exit() external {
-        withdraw(_balances[msg.sender]);
-        getReward();
-    }
+   /**
+    * @notice A method to the aggregated stakes from all stakeholders.
+    * @return uint256 The aggregated stakes from all stakeholders.
+    */
+   function totalStakes()
+       public
+       view
+       returns(uint256)
+   {
+       uint256 _totalStakes = 0;
+       for (uint256 s = 0; s < stakeholders.length; s += 1){
+           _totalStakes = _totalStakes.add(stakes[stakeholders[s]]);
+       }
+       return _totalStakes;
+   }
 
-    event RewardPaid(address, uint256);
-    event Staked(address, uint8);
+
+    /* ========== STAKING FUNCTIONS ========== */
+
+       /**
+    * @notice A simple method that calculates the rewards for each stakeholder.
+    * @param _stakeholder The stakeholder to calculate rewards for.
+    */
+   function calculateReward(address _stakeholder)
+       public
+       view
+       returns(uint256)
+   {
+       return stakes[_stakeholder] / 100;
+   }
+
+   /**
+    * @notice A method to distribute rewards to all stakeholders.
+    */
+   function distributeRewards()
+       public
+       onlyOwner
+   {
+       for (uint256 s = 0; s < stakeholders.length; s += 1){
+           address stakeholder = stakeholders[s];
+           uint256 reward = calculateReward(stakeholder);
+           rewards[stakeholder] = rewards[stakeholder].add(reward);
+       }
+   }
+
+   /**
+    * @notice A method to allow a stakeholder to withdraw his rewards.
+    */
+   function withdrawReward()
+       public
+   {
+       uint256 reward = rewards[msg.sender];
+       rewards[msg.sender] = 0;
+       _mint(msg.sender, reward);
+   }
+
+    /* ========== EVENTS ========== */
+    event RewardAdded(uint256 reward);
+    event Staked(address indexed user, uint256 amount);
+    event Withdrawn(address indexed user, uint256 amount);
+    event RewardPaid(address indexed user, uint256 reward);
+    event RewardsDurationUpdated(uint256 newDuration);
+    event Recovered(address token, uint256 amount);
 }
