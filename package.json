@@ -4,7 +4,8 @@
   "description": "athlete equity smart contracts",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prettier": "prettier --write 'contracts/**/*.sol'"
   },
   "author": "",
   "license": "ISC",
@@ -14,9 +15,13 @@
     "@uniswap/v3-core": "^1.0.0",
     "bn.js": "^5.2.0",
     "ethers": "^5.0.32",
-    "solc": "^0.8.1",
-    "synthetix": "github:Synthetixio/synthetix",
+    "solc": "^0.8.4",
+    "synthetix": "^2.44.0-alpha-1",
     "truffle": "^5.3.0",
     "truffle-hdwallet-provider": "^1.0.17"
+  },
+  "devDependencies": {
+    "prettier": "^2.2.1",
+    "prettier-plugin-solidity": "^1.0.0-beta.10"
   }
 }

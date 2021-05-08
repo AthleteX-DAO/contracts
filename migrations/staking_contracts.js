@@ -1,6 +1,6 @@
-const Staking = artifacts.require("../contracts/AEToken/AEStaking.sol");
+const AEStaking = artifacts.require('../contracts/implementation/AEStaking.sol');
 
 module.exports = function (deployer) {
-    deployer.deploy(Migrations);
+    deployer.deploy(AEStaking);
   };
   
