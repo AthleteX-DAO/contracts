@@ -12,7 +12,7 @@ import "@openzeppelin/contracts/math/SafeMath.sol";
  */
 contract Staking is ERC20, Ownable {
     using SafeMath for uint256;
-    IERC20 public AE;
+    IERC20 public AET;
 
     constructor() ERC20("Athlete Equity Token", "AET") public
     { 
