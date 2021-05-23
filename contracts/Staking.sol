@@ -14,7 +14,7 @@ contract Staking is ERC20, Ownable {
     using SafeMath for uint256;
     IERC20 public AE;
 
-    constructor() ERC20("Athlete Equity", "AE") public
+    constructor() ERC20("Athlete Equity Token", "AET") public
     { 
         address _owner = msg.sender;
         uint256 _supply = 10;
