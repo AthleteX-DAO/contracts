@@ -6,19 +6,35 @@
 module.exports = {
 
   networks: {
-    development: {
+    localhost: {
      host: "127.0.0.1",     // Localhost (default: none)
      port: 8545,            // Standard Ethereum port (default: none)
      network_id: "*",       // Any network (default: none)
     },
-    bsc: {
+    matic: { // MATIC MAINNET
+      provider: () => new HDWalletProvider(mnemonic, `https://rpc-mumbai.matic.today`),
+      network_id: 137,
+      confirmations: 2,
+      timeoutBlocks: 200,
+      skipDryRun: true
+    },
+    mumbai: { //MATIC TESTNET
+      provider: function() {
+        return new HDWalletProvider(mnemonic, "https://rpc-mumbai.matic.today");
+      },
+      network_id: 80001,
+      confirmations: 2,
+      timeoutBlocks: 200,
+      skipDryRun: true
+    }
+    bsc: { // BINANCE SMART CHAIN MAINNET
       provider: () => new HDWalletProvider(mnemonic, `https://bsc-dataseed1.binance.org`),
       network_id: 56,
       confirmations: 10,
       timeoutBlocks: 200,
       skipDryRun: true
     },
-    bsc_testnet: {
+    bsc_testnet: { //BINANCE SMART CHAIN TESTNET
       provider: () => new HDWalletProvider(mnemonic, `https://data-seed-prebsc-1-s1.binance.org:8545`),
       network_id: 97,
       confirmations: 10,
