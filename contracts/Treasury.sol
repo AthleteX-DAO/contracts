@@ -1,16 +1,17 @@
-pragma solidity >=0.6.0;
+// SPDX-License-Identifier: MIT
+pragma solidity >=0.8.0;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/math/SafeMath.sol";
 
-
+// Stores AX for reserve UNFINISHED
 contract Treasury {
     
-    IERC20 public AET;
+    IERC20 public AX;
 
-    constructor() ERC20("Athlete Equity Token", "AET") public
+    constructor() ERC20("AthleteX", "AX") public
     {
 
     }
