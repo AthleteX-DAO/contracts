@@ -9,27 +9,31 @@ pragma solidity ^0.7.0;
  * @notice This is meant to be a liquidity mediator for staking 
  */
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import "@openzeppelin/contracts/math/SafeMath.sol";
 
-
-contract DEXLP {
-
+contract Brokerage is ERC20 {
     event Bought(uint256 amount);
     event Sold(uint256 amount);
     
-    IERC20 public token;
+    using SafeMath for uint256;
+    IERC20 public AX;
+    // Get the total tokens locked in this contract address
+    uint256 TVL = AX.balanceOf(address(this));
     //View the balance of the Liquidity Pool mediator
     uint256 LPBalance = token.balanceOf(address(this));
 
-    // Stake`
-    function stake(uint _stakedAmount) public {
+    // // Stake
+    // function stake(uint _stakedAmount) public {
 
-    }
+    // }
 
-    // Withdraw 
-    function withdraw(uint _withdrawAmount) public {
+    // // Withdraw 
+    // function withdraw(uint256 _withdrawAmount) public {
+    //     uint256 totalShares;
 
-    }
+    // }
 
+    // Buy from brokerage
     function buy() payable public {
         uint256 amountToBuy = msg.value;
         uint256 dexBalance = token.balanceOf(address(this));
@@ -39,6 +43,7 @@ contract DEXLP {
         emit Bought (amountToBuy);
     }
 
+    // Selling back to the brokerage
     function sell(uint256 amount) payable public {
         require(amount > 0, "You need to sell at least some tokens");
         
