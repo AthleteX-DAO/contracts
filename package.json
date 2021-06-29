@@ -1,5 +1,5 @@
 {
-  "name": "ae-contracts",
+  "name": "ax-contracts",
   "version": "1.0.0",
   "description": "athlete equity smart contracts",
   "main": "index.js",
@@ -11,7 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "@openzeppelin/contracts": "^4.1.0",
-    "ethers": "^5.0.32", // Is this one necessary ?
+    "ethers": "^5.0.32", 
     "solc": "^0.8.4",
     "truffle": "^5.3.0",
     "truffle-hdwallet-provider": "^1.0.17"
