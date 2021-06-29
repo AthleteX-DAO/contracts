@@ -14,7 +14,9 @@ import "@openzeppelin/contracts/math/SafeMath.sol";
 contract Brokerage is ERC20 {
     event Bought(uint256 amount);
     event Sold(uint256 amount);
-    
+    event Staked(address indexed user, uint256 amount);
+    event Withdrawn(address indexed user, uint256 amount);
+
     using SafeMath for uint256;
     IERC20 public AX;
     // Get the total tokens locked in this contract address
@@ -22,16 +24,22 @@ contract Brokerage is ERC20 {
     //View the balance of the Liquidity Pool mediator
     uint256 LPBalance = token.balanceOf(address(this));
 
-    // // Stake
-    // function stake(uint _stakedAmount) public {
 
-    // }
+    // Stake
+    function stake(uint _stakedAmount) public {
+        require(_stakedAmount > 0, "Cannot stake 0");
+        
+        token.safeTransferFrom(msg.sender, address(this), amount);
+        emit Staked(msg.sender, amount);
+    }
 
-    // // Withdraw 
-    // function withdraw(uint256 _withdrawAmount) public {
-    //     uint256 totalShares;
+    // Withdraw 
+    function withdraw(uint256 _withdrawAmount) public {
+        require(amount > 0, "Cannot withdraw 0");
 
-    // }
+        token.safeTransfer(msg.sender, amount);
+        emit Withdrawn(msg.sender, amount);
+    }
 
     // Buy from brokerage
     function buy() payable public {
