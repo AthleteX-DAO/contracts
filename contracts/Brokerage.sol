@@ -190,7 +190,6 @@ contract Brokerage is ERC20, IStakingRewards, RewardsDistributionRecipient, Reen
     event RewardPaid(address indexed user, uint256 reward);
     event RewardsDurationUpdated(uint256 newDuration);
     event Recovered(address token, uint256 amount);
-}
 
     // Buy from brokerage
     function buy() payable public {
