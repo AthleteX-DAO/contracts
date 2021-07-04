@@ -17,10 +17,10 @@ import "@openzeppelin/contracts/security/Pausable.sol";
 
 // Inheritance
 import "./interfaces/IStakingRewards.sol";
+import "./RewardsDistributionRecipient.sol";
 
-contract Brokerage is ERC20, IStakingRewards, ReentrancyGuard, Pausable {
+contract Brokerage is ERC20, IStakingRewards, RewardsistributionRecipient, ReentrancyGuard, Pausable {
     using SafeMath for uint256;
-    using SafeERC20 for IERC20;
     
     event Bought(uint256 amount);
     event Sold(uint256 amount);
