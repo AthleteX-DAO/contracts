@@ -46,7 +46,7 @@ contract Brokerage is ERC20, IStakingRewards, ReentrancyGuard, Pausable {
     // Get the total tokens locked in this contract address
     uint256 TVL = AX.balanceOf(address(this));
     //View the balance of the Liquidity Pool mediator
-    uint256 LPBalance = token.balanceOf(address(this));
+    uint256 LPBalance = AX.balanceOf(address(this));
 
     /* ========== CONSTRUCTOR ========== */
 
@@ -95,7 +95,7 @@ contract Brokerage is ERC20, IStakingRewards, ReentrancyGuard, Pausable {
 
     /* ========== MUTATIVE FUNCTIONS ========== */
 
-    function stake(uint256 amount) external nonReentrant notPaused updateReward(msg.sender) {
+    function stake(uint256 amount) external nonReentrant updateReward(msg.sender) {
         require(amount > 0, "Cannot stake 0");
         _totalSupply = _totalSupply.add(amount);
         _balances[msg.sender] = _balances[msg.sender].add(amount);
