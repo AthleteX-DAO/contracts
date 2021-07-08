@@ -8,7 +8,8 @@ pragma solidity ^0.8.0;
  * @author Kevin Kamto
  * @notice This is meant to be a liquidity mediator for staking 
  */
-import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+// import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/utils/math/Math.sol";
 import "@openzeppelin/contracts/utils/math/SafeMath.sol";
 import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
@@ -17,9 +18,9 @@ import "@openzeppelin/contracts/security/Pausable.sol";
 
 // Inheritance
 import "./interfaces/IStakingRewards.sol";
-import "./RewardsDistributionRecipient.sol";
+import "./imports/RewardsDistributionRecipient.sol";
 
-contract Brokerage is ERC20, IStakingRewards, RewardsistributionRecipient, ReentrancyGuard, Pausable {
+contract Brokerage is ERC20, IStakingRewards, ReentrancyGuard, Pausable {
     using SafeMath for uint256;
     
     event Bought(uint256 amount);
