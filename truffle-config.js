@@ -25,7 +25,8 @@ module.exports = {
       network_id: 80001,
       confirmations: 2,
       timeoutBlocks: 200,
-      skipDryRun: true
+      skipDryRun: true,
+      chainId: 80001
     },
     bsc: { // BINANCE SMART CHAIN MAINNET
       provider: () => new HDWalletProvider(mnemonic, `https://bsc-dataseed1.binance.org`),
