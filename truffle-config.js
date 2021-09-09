@@ -1,14 +1,14 @@
 
  const HDWalletProvider = require('@truffle/hdwallet-provider');
  const fs = require('fs');
- const mnemonic = fs.readFileSync(".secret").toString().trim();
+ const mnemonic = "off neither whip umbrella skill monitor wall cup style fatal device month";
 
 module.exports = {
 
   networks: {
     localhost: {
      host: "127.0.0.1",     // Localhost (default: none)
-     port: 8545,            // Standard Ethereum port (default: none)
+     port: 7545,            // Standard Ethereum port (default: none)
      network_id: "*",       // Any network (default: none)
     },
     matic: { // MATIC MAINNET
