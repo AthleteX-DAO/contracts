@@ -5,7 +5,7 @@ import "../libraries/SafeERC20.sol";
 import "../interfaces/IERC20.sol";
 import "../libraries/Ownable.sol";
 
-contract Vesting is Ownable {
+contract Alex is Ownable {
     using SafeERC20 for IERC20;
 
     uint256 public start = 1614556800; // 3/1/2021 12 AM UTC
