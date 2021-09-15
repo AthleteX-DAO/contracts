@@ -86,7 +86,7 @@ contract StakingRewards is IStakingRewards, RewardsDistributionRecipient, Reentr
         _totalSupply = _totalSupply.add(amount);
         _balances[msg.sender] = _balances[msg.sender].add(amount);
         stakingToken.approve(msg.sender, amount);
-        stakingToken.transferFrom(msg.sender, address(this), amount);
+        stakingToken.safeTransferFrom(msg.sender, address(this), amount);
         emit Staked(msg.sender, amount);
     }
 
@@ -95,7 +95,7 @@ contract StakingRewards is IStakingRewards, RewardsDistributionRecipient, Reentr
         _totalSupply = _totalSupply.sub(amount);
         _balances[msg.sender] = _balances[msg.sender].sub(amount);
         stakingToken.approve(msg.sender, amount);
-        stakingToken.transfer(msg.sender, amount);
+        stakingToken.safeTransfer(msg.sender, amount);
         emit Withdrawn(msg.sender, amount);
     }
 
