@@ -12,7 +12,7 @@ contract Vesting is Ownable {
     uint256 public end = 1790740800; // 9/30/2026 12 AM UTC
 
     // TODO - update IERC20($AX-ADDRESS)
-    IERC20 public constant AX = IERC20(0x2aECCB42482cc64E087b6D2e5Da39f5A7A7001f8);
+    IERC20 public constant AX = IERC20(0x403A39b1161c87eF709a37B0CE78163700BBaa89);
     mapping(address => uint256) private _vested;
     mapping(address => uint256) private _total;
 
