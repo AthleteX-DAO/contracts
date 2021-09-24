@@ -1,22 +1,22 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import "../libraries/SafeERC20.sol";
-import "../interfaces/IERC20.sol";
-import "../libraries/Ownable.sol";
+import "./libraries/SafeERC20.sol";
+import "./interfaces/IERC20.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract Robbie is Ownable {
     using SafeERC20 for IERC20;
 
-    uint256 public start = 1614556800; // 3/1/2021 12 AM UTC
-    uint256 public end = 1646092800; // 3/1/2022 12 AM UTC
+    uint256 public start = 1632453602; // 3/1/2021 12 AM UTC
+    uint256 public end = 1632453720; // 3/1/2022 12 AM UTC
 
-    IERC20 public constant AX = IERC20(0x403A39b1161c87eF709a37B0CE78163700BBaa89);
+    IERC20 public constant AX = IERC20(0x8C086885624C5b823Cc6fcA7BFF54C454D6b5239);
     mapping(address => uint256) private _vested;
     mapping(address => uint256) private _total;
 
     constructor() {
-        _total[0x094AD38fB69f27F6Eb0c515ad4a5BD4b9F9B2996] = 8291667 ether;
+        _total[0x571F8e570Efe1fb0BA8ff75f4749b629a471f458] = 4001 ether;
     }
 
     function vest() external {

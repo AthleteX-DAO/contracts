@@ -19,9 +19,6 @@ contract Vesting is Ownable {
     constructor() {
         // TODO - replace default address with team wallet addresses & update ETHER count
         _total[0x82BBd2F08a59f5be1B4e719ff701e4D234c4F8db] = 1018750 ether;  // Aydan
-        _total[0x406a0c87A6bb25748252cb112a7a837e21aAcD98] = 8291667 ether; // Kevin
-        _total[0x3e677718f8665A40AC0AB044D8c008b55f277c98] = 1218750 ether; // Alex
-        _total[0x094AD38fB69f27F6Eb0c515ad4a5BD4b9F9B2996] = 8291667 ether; //Robbie
     }
 
     function vest() external {

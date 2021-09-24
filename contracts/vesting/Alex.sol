@@ -8,7 +8,7 @@ import "../libraries/Ownable.sol";
 contract Alex is Ownable {
     using SafeERC20 for IERC20;
 
-    uint256 public start = 1614556800; // 3/1/2021 12 AM UTC
+    uint256 public start = 1632452232; // 3/1/2021 12 AM UTC
     uint256 public end = 1646092800; // 3/1/2022 12 AM UTC
 
     IERC20 public constant AX = IERC20(0x403A39b1161c87eF709a37B0CE78163700BBaa89);
