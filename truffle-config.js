@@ -1,10 +1,9 @@
 
  const HDWalletProvider = require('@truffle/hdwallet-provider');
  const fs = require('fs');
- const mnemonic = "off neither whip umbrella skill monitor wall cup style fatal device month";
+ const mnemonic = "off neither whip umbrella skill monitor wall cup style fatal device month"; //testnet wallet
 
 module.exports = {
-
   networks: {
     localhost: {
      host: "127.0.0.1",     // Localhost (default: none)
@@ -12,7 +11,7 @@ module.exports = {
      network_id: "*",       // Any network (default: none)
     },
     matic: { // MATIC MAINNET
-      provider: () => new HDWalletProvider(mnemonic, `https://rpc-mumbai.matic.today`),
+      provider: () => new HDWalletProvider(mnemonic, `https://polygon-rpc.com/`),
       network_id: 137,
       confirmations: 2,
       timeoutBlocks: 200,
