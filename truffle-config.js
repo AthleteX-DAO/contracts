@@ -1,8 +1,8 @@
 
  const HDWalletProvider = require('@truffle/hdwallet-provider');
  const fs = require('fs');
- const mnemonic = "off neither whip umbrella skill monitor wall cup style fatal device month"; //testnet wallet
-
+ const mnemonic = fs.readFileSync(".secret"); //testnet wallet
+ const apiValue = fs.readFileSync(".etherscan-api");
 module.exports = {
   networks: {
     localhost: {
@@ -74,6 +74,12 @@ module.exports = {
     // timeout: 100000
   },
 
+  
+  api_keys: {
+    etherscan: apiValue,
+  },
+  plugins: ['truffle-plugin-verify'],
+  
   // Configure your compilers
   compilers: {
     solc: {
@@ -81,11 +87,11 @@ module.exports = {
       // docker: true,        // Use "0.5.1" you've installed locally with docker (default: false)
       // settings: {          // See the solidity docs for advice about optimization and evmVersion
       //  optimizer: {
-      //    enabled: false,
-      //    runs: 200
-      //  },
-      //  evmVersion: "byzantium"
-      // }
-    }
+        //    enabled: false,
+        //    runs: 200
+        //  },
+        //  evmVersion: "byzantium"
+        // }
+      },
   }
 };
