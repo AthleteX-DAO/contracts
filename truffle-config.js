@@ -1,9 +1,16 @@
 
  const HDWalletProvider = require('@truffle/hdwallet-provider');
  const fs = require('fs');
- const mnemonic = fs.readFileSync(".secret"); //testnet wallet
- const apiValue = fs.readFileSync(".etherscan-api");
+//  const mnemonic = fs.readFileSync(".secret"); //testnet wallet
+const mnemonic = "off neither whip umbrella skill monitor wall cup style fatal device month"
+ const apiValue = "KSB2PD59D5D1IZQ4HY8AG72TR3NQ4XCIPS";
 module.exports = {
+  plugins: [
+    'truffle-plugin-verify'
+  ],
+  api_keys: {
+    polygonscan: apiValue,
+  },
   networks: {
     localhost: {
      host: "127.0.0.1",     // Localhost (default: none)
@@ -73,12 +80,6 @@ module.exports = {
   mocha: {
     // timeout: 100000
   },
-
-  
-  api_keys: {
-    etherscan: apiValue,
-  },
-  plugins: ['truffle-plugin-verify'],
   
   // Configure your compilers
   compilers: {
