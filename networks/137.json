@@ -1,0 +1,42 @@
+[
+    {
+        "contractName": "Aaron Judge Linear Token Pair",
+        "address": "0x19d5b8f926596a31CA1c25cEf8C79A267EDC9864"
+    },
+    {
+        "contractName": "Bryce Harper Linear Token Pair",
+        "address": "0xD1f6F00a83b1938D697c730dDcad4410F00787De"
+    },
+    {
+        "contractName": "Carlos Correa Linear Token Pair",
+        "address": "0x53eCe60F883a8C7E16Bb3294808bA589Ab210a6E"
+    },
+    {
+        "contractName": "Fernando Tatis Jr Linear Token Pair",
+        "address": "0x251C607fF5680d5c98761E34464E8Dfe849Ce842"
+    },
+    {
+        "contractName": "Jose Ramirez Linear Token Pair",
+        "address": "0x34Ca688D00CaAF3a492f46Bc8676c3A48EaBff4e"
+    },
+    {   
+        "contractName": "Juan Soto Linear Token Pair",
+        "address": "0x8ae25fB4fa812395B6d4dD4a4C7ac10D627Ac1fE"
+    },
+    {
+        "contractName": "Marcus Semien Linear Token Pair",
+        "address": "0xc98E1EC69D9413c0D74FE6723Dc7D05e3F95dBd0"
+    },
+    {
+        "contractName": "Starling Marte Linear Token Pair",
+        "address": "0x01c86DeADD7f6993b92D746A53Bab5c8Dd2A97bA"
+    },
+    {
+        "contractName": "Trea Turner Linear Token Pair",
+        "address": "0x5bB30505Fa69487eC79501a58bb73dEA4D402b80"
+    },
+    {
+        "contractName": "Vladimir Guerrero Jr Linear Token Pair",
+        "address": "0xbe065AD544D911b101c7393f4e99b43418535daD"
+    }
+]
