@@ -3,7 +3,7 @@ pragma solidity ^0.8.4;
 
 import "@gysr/core";
 
-contract AthleteXFountain is IPoolFactory {
+contract AthleteXFountain is IPool {
 
     /**
      * setup of a gysr fountain
