@@ -15,7 +15,9 @@ contract ProxyPool is IPool {
         // creates a pool if it isn't there
         if (oldPool == null) {
             _setup();
-        };
+        } else {
+            _proxyPool = IPool(oldPool);
+        }
     }
 
     /**
