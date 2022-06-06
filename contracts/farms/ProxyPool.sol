@@ -45,14 +45,32 @@ contract ProxyPool is IPool {
         _proxyPool.stake(amount, [], []);
     }
 
+    /**
+     * @notice allows users to unstake
+     * @param amount {uint256} amount to unstake
+     * 
+     * @return {void}
+    */
     function unstake(uint256 amount) {
-     _proxyPool.unstake(amount, [], []);
+        _proxyPool.unstake(amount, [], []);
     }
     
+    /**
+     * @notice allows users to claim
+     * @param amount {uint256} amount to claim
+     * 
+     * @return {void}
+    */
     function claim(uint256 amount) {
         _proxyPool.claim(amount, [], []);
     }
 
+    /**
+     * @notice allows users to withdraw
+     * @param amount {uint256} amount to withdraw
+     * 
+     * @return {void}
+    */
     function withdraw(uint256 amount) {
         _proxyPool.withdraw(amount);
     }
