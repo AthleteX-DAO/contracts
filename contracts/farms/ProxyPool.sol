@@ -3,7 +3,9 @@ pragma solidity ^0.8.4;
 
 import "@gysr/core";
 
-contract AthleteXFountain is IPool {
+contract ProxyPool is IPool {
+
+    Pool private _fountain;
 
     /**
      * setup of a gysr fountain
@@ -19,10 +21,6 @@ contract AthleteXFountain is IPool {
      * module like a gysr fountain
      * 
      */
-    function _setup() {
-        // Requires treasury and rewardtoken address
-        PoolFactory _factory = new PoolFactory();
-    }
 
     /**
      * @notice allows users to stake
@@ -31,6 +29,18 @@ contract AthleteXFountain is IPool {
      * @return {void}
     */
     function stake(uint256 amount) {
-
+        // This invokes a new pool contract
+        _fountain.stake(amount);
     }
+
+    function unstake(uint256 amount) {
+        _fountain.unstake(amount);
+    }
+
+    function withdraw(uint256 amount) {
+        require(amount > 0, "p1");
+        _fountain.withdraw(amount);
+    }
+
+
 }
