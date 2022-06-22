@@ -13,26 +13,7 @@ contract ProxyPool is IPool {
      */
     constructor(address oldPool) {
         // creates a pool if it isn't there
-        if (oldPool == null) {
-            _setup();
-        } else {
-            _proxyPool = IPool(oldPool);
-        }
-    }
-
-    /**
-     * @notice creates a pool contract
-     * @dev this contract automatically sets the stakingmodule & friendly reward
-     * module like a gysr fountain
-     * 
-     */
-    function _setup() returns (address) {
-        // Requires treasury and rewardtoken address
-        address tokenAddress = "";
-        address treasuryAddress = "";
-        PoolFactory _factory = new PoolFactory(tokenAddress, treasuryAddress);
-        poolAddress = _factory.create();
-        proxyPool = IPool(poolAddress);
+            _proxyPool = IPool(oldPool); //Is there a constructor for IPool?
     }
 
     /**
@@ -41,8 +22,8 @@ contract ProxyPool is IPool {
      * 
      * @return {void}
     */
-    function stake(uint256 amount) {
-        _proxyPool.stake(amount, [], []);
+    function stake(uint256 amount, bytes calldata stakingdata, bytes calldata rewarddata) external {
+        _proxyPool.stake(amount, stakingdata, rewarddata);
     }
 
     /**
@@ -51,8 +32,8 @@ contract ProxyPool is IPool {
      * 
      * @return {void}
     */
-    function unstake(uint256 amount) {
-        _proxyPool.unstake(amount, [], []);
+    function unstake(uint256 amount, bytes calldata stakingdata, bytes calldata rewarddata) external {
+        _proxyPool.unstake(amount, stakingdata, rewarddata);
     }
     
     /**
@@ -61,8 +42,8 @@ contract ProxyPool is IPool {
      * 
      * @return {void}
     */
-    function claim(uint256 amount) {
-        _proxyPool.claim(amount, [], []);
+    function claim(uint256 amount, bytes calldata stakingdata, bytes calldata rewarddata) external {
+        _proxyPool.claim(amount, stakingdata, rewarddata);
     }
 
     /**
