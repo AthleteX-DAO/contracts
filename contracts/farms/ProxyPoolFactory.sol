@@ -5,7 +5,7 @@ import "@gysr/core";
 
 contract ProxyPoolFactory is IPoolFactory, OwnerController {
 
-    private PoolFactory _poolFactory = new PoolFactory();
+    IPoolFactory _poolFactory = new IPoolFactory();
     
 
     /**
@@ -15,7 +15,7 @@ contract ProxyPoolFactory is IPoolFactory, OwnerController {
         return _poolFactory.create(staking, reward, [] []);
     }
 
-    function treasuy external view override returns (address)
+    function treasury() external view override returns (address)
     {
     //  Invokes getter
      return _poolFactory.treasury();   
@@ -30,7 +30,7 @@ contract ProxyPoolFactory is IPoolFactory, OwnerController {
         _poolFactory.setTreasury(newTreasury);
     }
 
-    funciton setFee(uint256 theFees) external {
+    function setFee(uint256 theFees) external {
         _poolFactory.setFee(theFees);
     }
 
