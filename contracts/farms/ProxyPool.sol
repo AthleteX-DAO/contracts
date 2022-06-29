@@ -10,17 +10,10 @@ contract ProxyPool is IPool {
     /**
      * setup of a gysr fountain
      */
-    constructor() {
-        // creates a pool factory if it isn't there
-        _setup();
+    constructor(address oldPool) {
+        // creates a pool if it isn't there
+            _proxyPool = IPool(oldPool); //Is there a constructor for IPool?
     }
-
-    /**
-     * @notice creates a pool contract
-     * @dev this contract automatically sets the stakingmodule & friendly reward
-     * module like a gysr fountain
-     * 
-     */
 
     /**
      * @notice allows users to stake
@@ -28,13 +21,28 @@ contract ProxyPool is IPool {
      * 
      * @return {void}
     */
-    function stake(uint256 amount) {
-        // This invokes a new pool contract
-        _fountain.stake(amount);
+    function stake(uint256 amount, bytes calldata stakingdata, bytes calldata rewarddata) external {
+        _proxyPool.stake(amount, stakingdata, rewarddata);
     }
 
-    function unstake(uint256 amount) {
-        _fountain.unstake(amount);
+    /**
+     * @notice allows users to unstake
+     * @param amount {uint256} amount to unstake
+     * 
+     * @return {void}
+    */
+    function unstake(uint256 amount, bytes calldata stakingdata, bytes calldata rewarddata) external {
+        _proxyPool.unstake(amount, stakingdata, rewarddata);
+    }
+    
+    /**
+     * @notice allows users to claim
+     * @param amount {uint256} amount to claim
+     * 
+     * @return {void}
+    */
+    function claim(uint256 amount, bytes calldata stakingdata, bytes calldata rewarddata) external {
+        _proxyPool.claim(amount, stakingdata, rewarddata);
     }
 
     function withdraw(uint256 amount) {
