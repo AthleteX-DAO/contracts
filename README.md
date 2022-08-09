@@ -17,7 +17,7 @@ The followings are format and parameters for variant networks.
 url: 'https://rpc.sx.technology/'
 gasPrice: '10'
 pairName: '$firstname $lastname APT Pair'
-expirationTimestamp: 'Feb 12 2023'
+expirationTimestamp: '1676332799' ('2023-02-13T23:59:59+0000')
 collateralperpair: '1000'
 longsynthname: '$firstname $lastname Long APT'
 longSynthSymbol: '$f$lLAPT'
