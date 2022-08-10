@@ -1,0 +1,151 @@
+{
+    "router": {
+        "factory": "0x668880Eb73AAd6474b8aE1C08D3310e765803717",
+        "WAX": "0xd9Fd6e207a2196e1C3FEd919fCFE91482f705909",
+        "address": "0x4C2295082FC932EDE19EefB1af03c0b6B323610A"
+    },
+    "lsp": {
+        "params": {
+            "url": "https://rpc.sx.technology/",
+            "gasPrice": 10,
+            "expirationTimestamp": 1676332799,
+            "collateralperpair": 1000,
+            "priceIdentifier": "APT",
+            "collateralToken": "0xd9Fd6e207a2196e1C3FEd919fCFE91482f705909",
+            "lowerBound": 0,
+            "upperBound": 1000,
+            "proposerReward": "20000000000000000000",
+            "optimisticOracleProposerBond": "40000000000000000000"
+        },
+        "commonResults": {
+            "priceIdentifier": "0x4150540000000000000000000000000000000000000000000000000000000000",
+            "financialProductLibrary": "0xB5ae263c672B0E9c5187c7151982cF1A44F02eb2",
+            "customAncillaryData": "0x",
+            "optimisticOracleLivenessTime": 7200,
+            "enableEarlyExpiration": false,
+            "creatorAddress": "0x1e581855c52879a6B0E302E3798B94E51A09E0AF"
+        },
+        "deployments": [
+            {
+                "pairName": "Josh Allen APT Pair",
+                "longSynthName": "Josh Allen Long APT",
+                "longSynthSymbol": "JLLAPT",
+                "shortSynthName": "Josh Allen Short APT",
+                "shortSynthSymbol": "JLSAPT",
+                "address": "0x9a9f951a7421a50a119DD2c642E66e5ccc5ff49F"
+            },
+            {
+                "pairName": "Justin Herbert APT Pair",
+                "longSynthName": "Justin Herbert Long APT",
+                "longSynthSymbol": "JHLAPT",
+                "shortSynthName": "Justin Herbert Short APT",
+                "shortSynthSymbol": "JHSAPT",
+                "address": "0xB427A0443ec6cdB7BcB081870cc98890Fd70f689"
+            },
+            {
+                "pairName": "Patrick Mahomes APT Pair",
+                "longSynthName": "Patrick Mahomes Long APT",
+                "longSynthSymbol": "PMLAPT",
+                "shortSynthName": "Patrick Mahomes Short APT",
+                "shortSynthSymbol": "PMSAPT",
+                "address": "0x4167F2954B44C97DD13a3e9f81D1D42c103B04cb"
+            },
+            {
+                "pairName": "Lamar Jackson APT Pair",
+                "longSynthName": "Lamar Jackson Long APT",
+                "longSynthSymbol": "LJLAPT",
+                "shortSynthName": "Lamar Jackson Short APT",
+                "shortSynthSymbol": "LJSAPT",
+                "address": "0x4790944f6706AB2c6db59dfB8A5eFC050B6Ca0B0"
+            },
+            {
+                "pairName": "Jonathan Taylor APT Pair",
+                "longSynthName": "Jonathan Taylor Long APT",
+                "longSynthSymbol": "JTLAPT",
+                "shortSynthName": "Jonathan Taylor Short APT",
+                "shortSynthSymbol": "JTSAPT",
+                "address": "0x466F23e712a7F9729E3b8C0E4A1a47623B62f7D0"
+            },
+            {
+                "pairName": "Derrick Henry APT Pair",
+                "longSynthName": "Derrick Henry Long APT",
+                "longSynthSymbol": "DHLAPT",
+                "shortSynthName": "Derrick Henry Short APT",
+                "shortSynthSymbol": "DHSAPT",
+                "address": "0x394c7cE48208099e7530cF0cCb5374Cc1C1B35f8"
+            },
+            {
+                "pairName": "Christian McCaffrey APT Pair",
+                "longSynthName": "Christian McCaffrey Long APT",
+                "longSynthSymbol": "CMLAPT",
+                "shortSynthName": "Christian McCaffrey Short APT",
+                "shortSynthSymbol": "CMSAPT",
+                "address": "0x8e32E85F34c7Ca7Ad38890aeF85d448560Cf3347"
+            },
+            {
+                "pairName": "Austin Ekeler APT Pair",
+                "longSynthName": "Austin Ekeler Long APT",
+                "longSynthSymbol": "AELAPT",
+                "shortSynthName": "Austin Ekeler Short APT",
+                "shortSynthSymbol": "AESAPT",
+                "address": "0x4f4e7E6700f9D2f3a2B6a5C05F8cdA37ce9AD479"
+            },
+            {
+                "pairName": "Cooper Kupp APT Pair",
+                "longSynthName": "Cooper Kupp Long APT",
+                "longSynthSymbol": "CKLAPT",
+                "shortSynthName": "Cooper Kupp Short APT",
+                "shortSynthSymbol": "CKSAPT",
+                "address": "0x8B7accbaEE3137B1e8f3562e71916C2d73101D56"
+            },
+            {
+                "pairName": "Justin Jefferson APT Pair",
+                "longSynthName": "Justin Jefferson Long APT",
+                "longSynthSymbol": "JJLAPT",
+                "shortSynthName": "Justin Jefferson Short APT",
+                "shortSynthSymbol": "JJSAPT",
+                "address": "0xaae20D4f7937419D3edd2239A2E9adD30A762c46"
+            },
+            {
+                "pairName": "Ja'Marr Chase APT Pair",
+                "longSynthName": "Ja'Marr Chase Long APT",
+                "longSynthSymbol": "JCLAPT",
+                "shortSynthName": "Ja'Marr Chase Short APT",
+                "shortSynthSymbol": "JCSAPT",
+                "address": "0xD997d403687A0978DE2CB633007A43a18006f680"
+            },
+            {
+                "pairName": "Travis Kelce APT Pair",
+                "longSynthName": "Travis Kelce Long APT",
+                "longSynthSymbol": "TKLAPT",
+                "shortSynthName": "Travis Kelce Short APT",
+                "shortSynthSymbol": "TKSAPT",
+                "address": "0x07f23c0716C0A6254d2d1910932773c3AE1DE9E4"
+            },
+            {
+                "pairName": "Mark Andrews APT Pair",
+                "longSynthName": "Mark Andrews Long APT",
+                "longSynthSymbol": "MALAPT",
+                "shortSynthName": "Mark Andrews Short APT",
+                "shortSynthSymbol": "MASAPT",
+                "address": "0x2B1B785aD6CC182Ed739e6585812c46591eB8338"
+            },
+            {
+                "pairName": "Kyle Pitts APT Pair",
+                "longSynthName": "Kyle Pitts Long APT",
+                "longSynthSymbol": "KPLAPT",
+                "shortSynthName": "Kyle Pitts Short APT",
+                "shortSynthSymbol": "KPSAPT",
+                "address": "0xDC354d61EC8fde94B549c5d8560C4136A0537601"
+            },
+            {
+                "pairName": "Geroge Kittle APT Pair",
+                "longSynthName": "Geroge Kittle Long APT",
+                "longSynthSymbol": "GKLAPT",
+                "shortSynthName": "Geroge Kittle Short APT",
+                "shortSynthSymbol": "GKSAPT",
+                "address": "0xC24a3D5dd6ac8E121b2A877785ecad28E586785A"
+            }
+        ]
+    }
+}
