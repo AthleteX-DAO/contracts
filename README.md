@@ -17,24 +17,25 @@ The followings are format and parameters for variant networks.
 
     - Parameters
 
-    ```bash
-    url: 'https://rpc.sx.technology/'
-    gasPrice: '10'
-    pairName: '$firstname $lastname APT Pair'
-    expirationTimestamp: '1676332799' ('2023-02-13T23:59:59+0000')
-    collateralperpair: '1000'
-    priceIdentifier: 'APT'
-    longsynthname: '$firstname $lastname Long APT'
-    longSynthSymbol: '$f$lLAPT'
-    shortSynthName: '$firstname $lastname Short APT'
-    shortSynthSymbol: '$f$lSAPT'
-    collateralToken: 'https://explorer.sx.technology/address/0xd9Fd6e207a2196e1C3FEd919fCFE91482f705909'
-    lowerBound: '0'
-    upperBound: '1000'
-    proposerReward: '20000000000000000000'
-    optimisticOracleProposerBond: '40000000000000000000'
+    ```yaml
+    url: https://rpc.sx.technology/
+    gasPrice: 10
+    pairName: $firstname $lastname APT Pair
+    expirationTimestamp: 1676332799 (2023-02-13T23:59:59+0000)
+    collateralperpair: 1000
+    priceIdentifier: APT
+    longsynthname: $firstname $lastname Long APT
+    longSynthSymbol: $f$lLAPT
+    shortSynthName: $firstname $lastname Short APT
+    shortSynthSymbol: $f$lSAPT
+    collateralToken: 0xd9Fd6e207a2196e1C3FEd919fCFE91482f705909
+    lowerBound: 0
+    upperBound: 1000
+    proposerReward: 20000000000000000000
+    optimisticOracleProposerBond: 40000000000000000000
 
-    ( $f: first ch of firstname, $l: first ch of lastname )
+    $f: first ch of firstname
+    $l: first ch of lastname
     ```
 
     - Command template
