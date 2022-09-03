@@ -22,7 +22,7 @@ The followings are format and parameters for variant networks.
     gasPrice: 10
     pairName: $firstname $lastname APT Pair
     expirationTimestamp: 1676332799 (2023-02-13T23:59:59+0000)
-    collateralperpair: 1000
+    collateralperpair: 1000000000000000000000
     priceIdentifier: APT
     longsynthname: $firstname $lastname Long APT
     longSynthSymbol: $f$lLAPT
@@ -30,7 +30,7 @@ The followings are format and parameters for variant networks.
     shortSynthSymbol: $f$lSAPT
     collateralToken: 0xd9Fd6e207a2196e1C3FEd919fCFE91482f705909
     lowerBound: 0
-    upperBound: 1000
+    upperBound: 1000000000000000000000
     proposerReward: 20000000000000000000
     optimisticOracleProposerBond: 40000000000000000000
 
