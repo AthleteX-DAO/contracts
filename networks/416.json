@@ -154,6 +154,15 @@
           "address": "0xB578228bB1282ee9d8c19F2f4064C61e75A08572",
           "longToken": "0xd68e6728af948640B3D62Ab01859815Bf6b8d146",
           "shortToken": "0xE26cEe1D3450c18CF7ba034aef6703C98A562094"
-        }
+        },
+        {
+          "longSynthName": "Justin Fields Long APT",
+          "longSynthSymbol": "JFLAPT",
+          "shortSynthName": "Justin Fields Short APT",
+          "shortSynthSymbol": "JFSAPT",
+          "address": "0x637506c44B31eaF83AddC2A3743D53e51Bb3D7aa",
+          "longToken": "0x12a1BC3390442a6e0Ff2313a79eb179a5012F6C7",
+          "shortToken": "0x6b61aC1f05cE43A12081f3DaCAe57638cb2552C4"
+        },
     ]
 }
