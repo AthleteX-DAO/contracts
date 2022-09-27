@@ -1,9 +1,13 @@
 # contracts
 AthleteX protocol contracts
 
-## LSP Deployment
+## What is an APT
 
-LSP is deployed using [package of UMAprotocol](https://github.com/UMAprotocol/launch-lsp).
+a seasonal APT is a [UMAprotocol] long-short pair.  They are bound in certain ways:  The AthleteX token is the 'collateralToken', and the 'collateralperpair' is the exact same as the 'upperBound'.  The 'lowerBound' is set to zero.  
+
+## APT Deployment
+
+APT is deployed using [package of UMAprotocol](https://github.com/UMAprotocol/launch-lsp).
 
 After done minting APT, it will be needed to record long and short token addresses individually. It can be usually done by remix IDE. At first, complie [LongShortPair.sol](https://github.com/UMAprotocol/protocol/blob/master/packages/core/contracts/financial-templates/long-short-pair/LongShortPair.sol) smart contract, and then instantiate the smart contract using `AtAddress` with LSP address mint by the above package. Finally, you can get `longToken` and `shortToken` addresses in this LongShortPair instantiation.
 
