@@ -1,10 +1,6 @@
 # contracts
 AthleteX protocol contracts
 
-Architecture:
-
-1) Brokerage.sol
-
 ## LSP Deployment
 
 LSP is deployed using [package of UMAprotocol](https://github.com/UMAprotocol/launch-lsp).
